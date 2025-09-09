@@ -9,7 +9,30 @@ import SwiftUI
 
 struct Loading: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader { geometry in
+            let height = geometry.size.height
+            let width = geometry.size.width
+            let isLandscape = width > height
+            if isLandscape {
+                ZStack {
+                    Backgrounds(backgroundNumber: 0)
+                    Image(.gameLogo)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: width*0.25)
+                }
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            } else {
+                ZStack {
+                    Backgrounds(backgroundNumber: 0)
+                    Image(.gameLogo)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: height*0.25)
+                }
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            }
+        }
     }
 }
 
